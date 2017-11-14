@@ -1649,8 +1649,13 @@
                         plyr.media.currentTime = 0;
                         plyr.media.muted = instance.isMuted();
 
-                        // Set title
-                        config.title = instance.getVideoData().title;
+                        // Set title if possible
+                        if(typeof instance.getVideoData === 'function') {
+                            config.title = instance.getVideoData().title;
+                        }
+                        else {
+                            config.title = 'Youtube video';
+                        }
 
                         // Set the tabindex
                         if (plyr.supported.full) {
